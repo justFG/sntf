@@ -1,0 +1,28 @@
+{
+  "name": "sntf",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.1",
+    "@mui/material": "^7.3.1",
+    "cheerio": "^1.1.2",
+    "fs": "0.0.1-security",
+    "isomorphic-unfetch": "^4.0.2",
+    "next": "^14",
+    "node-fetch": "^2.7.0",
+    "path": "^0.12.7",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
+  }
+}
