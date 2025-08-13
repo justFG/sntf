@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography, CircularProgress } from '@mui/material';
-import TrainCard from './TrainCard';
+import TrainCard from '../TrainCard/TrainCard';
 
 export default function ResultsList({ results = [], searchParams = {}, loading, error }) {
   if (loading) {
