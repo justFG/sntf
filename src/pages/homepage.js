@@ -4,12 +4,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container, Box, Grid, Typography, Button, TextField, Card, CardContent, CardActions } from '@mui/material';
+import {
+  Container, Box, Grid, Typography, Button,
+  TextField, Card, CardContent, CardActions
+} from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TrainIcon from '@mui/icons-material/Train';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
-import NextLink from 'next/link';
 
 const theme = createTheme({
   palette: {
@@ -19,7 +21,7 @@ const theme = createTheme({
   typography: { fontFamily: '"Roboto","Helvetica","Arial",sans-serif' },
 });
 
-// banlieue buttons mapping
+// Boutons banlieue
 const banlieues = [
   { key: 'alger-est', label: 'Alger Est' },
   { key: 'alger-ouest', label: 'Alger Ouest' },
@@ -29,7 +31,7 @@ const banlieues = [
   { key: 'trains-regionaux', label: 'Trains régionaux' },
 ];
 
-// Trains list for discover
+// Images trains
 const trains = [
   { type: 'banlieues', title: 'Trains de Banlieues', img: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=60' },
   { type: 'regionaux', title: 'Trains Régionaux', img: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=60' },
@@ -58,17 +60,23 @@ export default function Home() {
       <Navbar />
 
       <main>
-        {/* Search hero */}
+        {/* HERO RECHERCHE */}
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
           <Container maxWidth="lg">
             <Grid container spacing={4} alignItems="center">
               <Grid item xs={12} md={7}>
-                <Typography variant="h3" sx={{ fontWeight: 800, color: 'primary.main', mb: 2 }}>RECHERCHER VOTRE TRAIN</Typography>
+                <Typography variant="h3" sx={{ fontWeight: 800, color: 'primary.main', mb: 2 }}>
+                  RECHERCHER VOTRE TRAIN
+                </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
                   Trouvez rapidement les horaires et les trains disponibles. Entrez gare de départ et d'arrivée puis cliquez sur Rechercher.
                 </Typography>
 
-                <Box component="form" onSubmit={handleSearch} sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                <Box
+                  component="form"
+                  onSubmit={handleSearch}
+                  sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}
+                >
                   <TextField label="Départ" value={from} onChange={(e) => setFrom(e.target.value)} size="small" sx={{ minWidth: 160 }} />
                   <TextField label="Arrivée" value={to} onChange={(e) => setTo(e.target.value)} size="small" sx={{ minWidth: 160 }} />
                   <TextField label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} InputLabelProps={{ shrink: true }} size="small" />
@@ -83,21 +91,23 @@ export default function Home() {
           </Container>
         </Box>
 
-        {/* Banlieue buttons */}
+        {/* BOUTONS BANLIEUE */}
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>HORAIRES DES TRAINS DE BANLIEUE</Typography>
           <Grid container spacing={2}>
             {banlieues.map((b) => (
               <Grid key={b.key} item xs={6} sm={4} md={2}>
                 <Link href={`/banlieue/${b.key}`} passHref legacyBehavior>
-                  <Button component="a" variant="outlined" fullWidth sx={{ textTransform: 'none' }}>{b.label}</Button>
+                  <Button component="a" variant="outlined" fullWidth sx={{ textTransform: 'none' }}>
+                    {b.label}
+                  </Button>
                 </Link>
               </Grid>
             ))}
           </Grid>
         </Container>
 
-        {/* Services */}
+        {/* SERVICES */}
         <Box sx={{ bgcolor: '#f6f8fa', py: { xs: 4, md: 6 } }}>
           <Container maxWidth="lg">
             <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>SERVICES</Typography>
@@ -111,7 +121,9 @@ export default function Home() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Link href="/services/en-gare" passHref legacyBehavior><Button component="a" size="small">Voir</Button></Link>
+                    <Link href="/services/en-gare" passHref legacyBehavior>
+                      <Button component="a" size="small">Voir</Button>
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>
@@ -125,7 +137,9 @@ export default function Home() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Link href="/services/a-bord-du-train" passHref legacyBehavior><Button component="a" size="small">Voir</Button></Link>
+                    <Link href="/services/a-bord-du-train" passHref legacyBehavior>
+                      <Button component="a" size="small">Voir</Button>
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>
@@ -133,23 +147,37 @@ export default function Home() {
           </Container>
         </Box>
 
-        {/* Discover our trains */}
+        {/* DECOUVREZ NOS TRAINS */}
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>DÉCOUVREZ NOS TRAINS</Typography>
           <Grid container spacing={3}>
             {trains.map((t) => (
               <Grid key={t.type} item xs={12} sm={6} md={3}>
-                <Box sx={{
-                  position: 'relative',
-                  overflow: 'hidden',
-                  borderRadius: 2,
-                  cursor: 'pointer',
-                  '&:hover img': { transform: 'scale(1.08)' },
-                }}>
-                  <Link href={`/trains/${t.type}`} passHref legacyBehavior>
-                    <a>
-                      <Box component="img" src={t.img} alt={t.title} sx={{ width: '100%', height: 220, objectFit: 'cover', transition: 'transform .4s' }} />
-                      <Box sx={{
+                <Link href={`/trains/${t.type}`} passHref legacyBehavior>
+                  <Box
+                    component="a"
+                    sx={{
+                      position: 'relative',
+                      overflow: 'hidden',
+                      borderRadius: 2,
+                      cursor: 'pointer',
+                      display: 'block',
+                      '&:hover img': { transform: 'scale(1.08)' },
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={t.img}
+                      alt={t.title}
+                      sx={{
+                        width: '100%',
+                        height: 220,
+                        objectFit: 'cover',
+                        transition: 'transform .4s',
+                      }}
+                    />
+                    <Box
+                      sx={{
                         position: 'absolute',
                         inset: 0,
                         display: 'flex',
@@ -158,16 +186,27 @@ export default function Home() {
                         p: 2,
                         background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)',
                         color: '#fff',
-                      }}>
-                        <Typography variant="h6">{t.title}</Typography>
-                        <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
-                          <Button size="small" variant="contained" color="secondary" href={`/trains/${t.type}`}>En savoir plus</Button>
-                          <Button size="small" variant="outlined" startIcon={<ZoomInIcon />} href={t.img} target="_blank" rel="noreferrer">Zoom</Button>
-                        </Box>
+                      }}
+                    >
+                      <Typography variant="h6">{t.title}</Typography>
+                      <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
+                        <Button size="small" variant="contained" color="secondary">
+                          En savoir plus
+                        </Button>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          startIcon={<ZoomInIcon />}
+                          href={t.img}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Zoom
+                        </Button>
                       </Box>
-                    </a>
-                  </Link>
-                </Box>
+                    </Box>
+                  </Box>
+                </Link>
               </Grid>
             ))}
           </Grid>
