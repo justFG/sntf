@@ -110,6 +110,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 variant="outlined"
                 size="medium"
                 onKeyDown={handleFromKeyDown}
+                sx={{ minWidth:200}}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary' }} />,
@@ -149,6 +150,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 variant="outlined"
                 size="medium"
                 onKeyDown={handleToKeyDown}
+                sx={{ minWidth:200}}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary', transform: 'rotate(180deg)' }} />,
