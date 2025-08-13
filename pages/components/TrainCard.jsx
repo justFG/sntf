@@ -7,6 +7,12 @@ export default function TrainCard({ train = {}, minHeight = '10vh' }) {
   const headerRef = useRef(null);
   const [dividerTop, setDividerTop] = useState(null);
 
+  // mapping selon ton API :
+  const trainLabel = `${train.train ?? ''}${train.depart ? ' — ' + String(train.depart).trim() : ''}`.trim() || 'Train';
+  const departureStation = String(train.arrivee ?? train.from ?? '—');
+  const destination = String(train.observations ?? train.to ?? '—');
+  const departureTime = String(train.duree ?? train.time ?? '');
+
   // calcule la position de la divider (relative au top de la card)
   useLayoutEffect(() => {
     function update() {
@@ -22,7 +28,7 @@ export default function TrainCard({ train = {}, minHeight = '10vh' }) {
 
     update();
     window.addEventListener('resize', update);
-    // si contenu dynamique change, on peut observer mutations (optionnel)
+    // observer pour changements dynamiques
     const ro = new ResizeObserver(update);
     if (cardRef.current) ro.observe(cardRef.current);
     if (headerRef.current) ro.observe(headerRef.current);
@@ -62,7 +68,7 @@ export default function TrainCard({ train = {}, minHeight = '10vh' }) {
           pb: 2,
         }}
       >
-        {/* Header : icon + titre + depart */}
+        {/* Header : icon + trainLabel + gare de départ */}
         <div ref={headerRef}>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
@@ -70,25 +76,27 @@ export default function TrainCard({ train = {}, minHeight = '10vh' }) {
             </Grid>
 
             <Grid item xs sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <Typography variant="h6">{train.train}</Typography>
+              <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
+                {trainLabel}
+              </Typography>
+
               <Typography variant="body2" color="text.secondary" sx={{ whiteSpace: 'pre-line' }}>
-                {train.depart}
+                <strong>Gare de départ :</strong> {departureStation}
               </Typography>
             </Grid>
           </Grid>
         </div>
 
-        {/* Divider placé dynamiquement en absolute (voir plus bas) */}
-        {/* Footer left: départ (dans le flux) */}
+        {/* Footer left: autres infos éventuelles (garde dans le flux) */}
         <div>
           <Grid container spacing={1}>
             <Grid item>
-              <Typography variant="subtitle2">{train.from || '—'}</Typography>
+              <Typography variant="subtitle2">{departureStation}</Typography>
               <Typography variant="caption" color="text.secondary">
                 Départ
               </Typography>
             </Grid>
-            {/* Arrivée est en bas-right absolu, géré plus bas */}
+            {/* Arrivée/destination est en bottom-right absolu */}
           </Grid>
         </div>
       </CardContent>
@@ -106,7 +114,7 @@ export default function TrainCard({ train = {}, minHeight = '10vh' }) {
         />
       )}
 
-      {/* TOP-RIGHT BOX : Chip + observations */}
+      {/* TOP-RIGHT BOX : heure de départ (chip) + observations optionnelles */}
       <Box
         sx={{
           position: 'absolute',
@@ -121,28 +129,24 @@ export default function TrainCard({ train = {}, minHeight = '10vh' }) {
           zIndex: 2,
         }}
       >
-        <Chip label={train.duree} color="success" />
-        {train.observations && (
-          <Typography
-            variant="caption"
-            color="warning.main"
-            sx={{
-              display: '-webkit-box',
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden',
-            }}
-          >
-            {train.observations}
-          </Typography>
-        )}
+        {departureTime ? <Chip label={departureTime} color="success" /> : null}
+        {/* note: observations ici peuvent contenir d'autres infos; on affiche la destination en bas-right */}
       </Box>
 
-      {/* BOTTOM-RIGHT BOX : Arrivée collée au coin bas-droit */}
+      {/* BOTTOM-RIGHT BOX : Destination / Arrivée collée au coin bas-droit */}
       <Box
         sx={{
-          position: 'absolute', bottom: 12, right: 12, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', textAlign: 'right', zIndex: 2,}}>
-        <Typography variant="subtitle2">{train.to || '—'}</Typography>
+          position: 'absolute',
+          bottom: 12,
+          right: 12,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-end',
+          textAlign: 'right',
+          zIndex: 2,
+        }}
+      >
+        <Typography variant="subtitle2">{destination}</Typography>
         <Typography variant="caption" color="text.secondary">
           Arrivée
         </Typography>
