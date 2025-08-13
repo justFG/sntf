@@ -1,5 +1,5 @@
 [
-  { "id": 69, "name": "Alger" },
+  { "id": 37, "name": "Alger" },
   { "id": 134, "name": "Boumerdes" },
   { "id": 114, "name": "Blida" },
   { "id": 148, "name": "Constantine" },
@@ -8,5 +8,7 @@
   { "id": 424, "name": "Tlemcen" },
   { "id": 86, "name": "Batna" },
   { "id": 90, "name": "Béjaïa" },
+  { "id": 305, "name": "Oran" },
+  { "id": 423, "name": "Tizi Ouzou" },
   { "id": 393, "name": "Skikda" }
 ]
