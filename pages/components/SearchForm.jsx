@@ -86,7 +86,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
 
   return (
     <div className={styles.wrapper}>
-      <Grid container spacing={2} alignItems="end" className={styles.grid}>
+      <Grid container spacing={1} alignItems="end" className={styles.grid}>
         <Grid item xs={12} md={5}>
           <Autocomplete
             freeSolo
@@ -110,7 +110,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 variant="outlined"
                 size="medium"
                 onKeyDown={handleFromKeyDown}
-                sx={{ width:"20vw"}}
+                sx={{ width:"39vw"}}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary' }} />,
@@ -121,7 +121,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
           />
         </Grid>
 
-        <Grid item xs={12} md={2} textAlign="center">
+        <Grid item xs={12} md={2} textAlign="center" justifySelf="center" alignSelf="center">
           <IconButton color="primary" onClick={swapStations} aria-label="swap">
             <SwapHorizIcon />
           </IconButton>
@@ -150,7 +150,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 variant="outlined"
                 size="medium"
                 onKeyDown={handleToKeyDown}
-                sx={{ width:"20vw"}}
+                sx={{ width:"39vw"}}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary', transform: 'rotate(180deg)' }} />,
