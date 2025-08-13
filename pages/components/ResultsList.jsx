@@ -30,12 +30,14 @@ export default function ResultsList({ results = [], searchParams = {}, loading, 
   }
 
   return (
-    <Grid container spacing={2}>
-      {results.map((train, i) => (
+    <>
+    <Paper sx={{ p: 2, mb: 2, textAlign: 'center', color: 'text.secondary' }}>
+        {results.map((train, i) => (
         <Grid item xs={12} key={i} sx={{ display: 'flex' }}>
           <TrainCard train={train} />
         </Grid>
       ))}
-    </Grid>
+      </Paper>
+    </>
   );
 }
