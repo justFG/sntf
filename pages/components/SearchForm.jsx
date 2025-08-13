@@ -171,7 +171,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
             type="date"
             size="medium"
             value={date}
-            sx={{width: { xs: '45vw', md: '20vw' }}}
+            sx={{width: { xs: '49vw', md: '20vw' }}}
             onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
             InputProps={{ startAdornment: <CalendarTodayIcon sx={{ mr: 1, color: 'text.secondary' }} /> }}
