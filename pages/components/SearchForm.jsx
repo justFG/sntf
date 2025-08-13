@@ -87,6 +87,8 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
   return (
     <div className={styles.wrapper}>
       <Grid container spacing={1} alignItems="end" className={styles.grid}>
+       <div className={styles.center}>
+        <div className={styles.depdest}>
         <Grid item xs={12} md={5}>
           <Autocomplete
             freeSolo
@@ -160,7 +162,8 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
             )}
           />
         </Grid>
-        
+        </div>
+       </div>
        <div className={styles.date}>
         <Grid item xs={12} md={4}>
           <TextField

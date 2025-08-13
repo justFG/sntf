@@ -6,7 +6,15 @@
   align-items: end;
 
 }
-
+.center{
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    flex-flow: column;
+}
+.depdest{
+    display: flex;
+}
 .date{
     width: 100vw;
     display: flex;
