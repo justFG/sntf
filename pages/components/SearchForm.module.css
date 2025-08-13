@@ -6,3 +6,11 @@
   align-items: end;
 
 }
+
+.date{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-flow: column;
+}

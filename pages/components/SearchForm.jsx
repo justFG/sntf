@@ -110,7 +110,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 variant="outlined"
                 size="medium"
                 onKeyDown={handleFromKeyDown}
-                sx={{ width:"39vw"}}
+                sx={{ width: { xs: '39vw', md: '20vw' }}}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary' }} />,
@@ -150,7 +150,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 variant="outlined"
                 size="medium"
                 onKeyDown={handleToKeyDown}
-                sx={{ width:"39vw"}}
+                sx={{ width: { xs: '39vw', md: '20vw' }}}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary', transform: 'rotate(180deg)' }} />,
@@ -160,19 +160,22 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
             )}
           />
         </Grid>
-
+        
+       <div className={styles.date}>
         <Grid item xs={12} md={4}>
           <TextField
             label="Date"
             type="date"
             size="medium"
             value={date}
+            sx={{width: { xs: '39vw', md: '20vw' }}}
             onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
             InputProps={{ startAdornment: <CalendarTodayIcon sx={{ mr: 1, color: 'text.secondary' }} /> }}
             fullWidth
           />
         </Grid>
+       </div>
 
         <Grid item xs={12} md={8}>
           <Grid container spacing={2}>
