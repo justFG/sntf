@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Container, Typography, Paper } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
-import SearchForm from './components/SearchForm';
-import ResultsList from './components/ResultsList';
+import SearchForm from '../components/SearchForm';
+import ResultsList from '../components/ResultsList';
 
 export default function Home() {
   const [stations, setStations] = useState([]);
