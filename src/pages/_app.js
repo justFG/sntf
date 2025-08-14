@@ -20,7 +20,6 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>SNTF — Recherche Horaires</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        {/* Roboto font (Google) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
