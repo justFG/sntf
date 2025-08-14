@@ -1,19 +1,32 @@
 // src/components/Footer.jsx
 import React from 'react';
-import { Box, Container, Typography, Link } from '@mui/material';
+import NextLink from 'next/link';
+import { Box, Container, Typography, Link as MuiLink } from '@mui/material';
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: 'primary.main', color: '#fff', py: 4, mt: 6 }}>
-      <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box component="footer" sx={{ bgcolor: 'primary.main', color: '#fff', py: 4, mt: 8 }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 2,
+        }}
+      >
         <Typography variant="body2">© {new Date().getFullYear()} SNTF — Tous droits réservés.</Typography>
+
         <Box>
-          <Link href="/avantages-tarifs" passHref legacyBehavior>
-            <a style={{ color: '#fff', textDecoration: 'none', marginRight: 16 }}>Avantages & Tarifs</a>
-          </Link>
-          <Link href="/contact" passHref legacyBehavior>
-            <a style={{ color: '#fff', textDecoration: 'none' }}>Contact</a>
-          </Link>
+          {/* Using MUI Link component with component={NextLink} */}
+          <MuiLink component={NextLink} href="/avantages-tarifs" color="inherit" sx={{ mr: 2 }}>
+            Avantages & Tarifs
+          </MuiLink>
+
+          <MuiLink component={NextLink} href="/contact" color="inherit">
+            Contact
+          </MuiLink>
         </Box>
       </Container>
     </Box>
