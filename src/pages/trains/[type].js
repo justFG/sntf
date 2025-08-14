@@ -4,7 +4,13 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Container, Typography, Box } from '@mui/material';
+
+const theme = createTheme({
+  palette: { primary: { main: '#003057' }, secondary: { main: '#D32F2F' } },
+  typography: { fontFamily: '"Roboto","Helvetica","Arial",sans-serif' },
+});
 
 const DATA = {
   'banlieues': {
@@ -32,16 +38,19 @@ export default function TrainTypePage() {
 
   if (!info) {
     return (
+      <ThemeProvider theme={theme}>
       <>
         <Head><title>Trains — SNTF</title></Head>
         <Navbar />
         <Container sx={{ py: 6 }}><Typography>Type de train introuvable.</Typography></Container>
         <Footer />
       </>
+      </ThemeProvider>
     );
   }
 
   return (
+    <ThemeProvider theme={theme}>
     <>
       <Head><title>{info.title} — SNTF</title></Head>
       <Navbar />
@@ -55,5 +64,6 @@ export default function TrainTypePage() {
       </Container>
       <Footer />
     </>
+    </ThemeProvider>
   );
 }

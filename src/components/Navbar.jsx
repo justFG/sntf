@@ -26,11 +26,12 @@ export default function Navbar() {
   ];
 
   return (
+    <div style={{ paddingBottom: '64px' }}>
     <AppBar
       position="fixed"
       color="primary"
       elevation={3}
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
     >
       <Toolbar sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
@@ -84,5 +85,6 @@ export default function Navbar() {
         </Box>
       </Toolbar>
     </AppBar>
+    </div>
   );
 }

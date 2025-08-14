@@ -25,7 +25,7 @@ const DATA = {
   },
   'tizi-ouzou': {
     title: 'Banlieue — Tizi Ouzou',
-    img: '/banlieue/TiziOuzou.jpg',
+    img: '/banlieue/Tizi.jpg',
     details: 'Horaires & temps des trains pour Tizi Ouzou.',
   },
   'aeroport': {
@@ -89,7 +89,7 @@ export default function BanlieuePage() {
 
       <Navbar />
 
-      <Container sx={{ pt: { xs: '84px', md: '84px' }, pb: 6 }}>
+      <Container sx={{ pt: { xs: '84px', md: '84px' }, pb: 6,display:'flex',flexFlow:'column' }}>
         <Typography variant="h3" sx={{ fontWeight: 800, mb: 1 }}>
           {info.title}
         </Typography>
@@ -101,13 +101,17 @@ export default function BanlieuePage() {
           component="img"
           src={info.img}
           alt={info.title}
+          onClick={() => window.open(info.img, "_blank")}
           sx={{
-            width: '100%',
-            height: { xs: 200, sm: 300, md: 360 },
+            width: { xs: '100%', md: '75%' },
+            height: '100%',
             objectFit: 'cover',
             borderRadius: 2,
             boxShadow: 3,
             mb: 4,
+            justifySelf:'center',
+            alignSelf:'center',
+            cursor:'pointer'
           }}
         />
 

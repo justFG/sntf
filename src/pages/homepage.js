@@ -60,7 +60,7 @@ export default function Home() {
 
       <Navbar />
 
-      <Box component="main" sx={{ pt: { xs: '72px', md: '72px' } }}>
+      <Box component="main">
         {/* Search hero */}
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
           <Container maxWidth="lg">

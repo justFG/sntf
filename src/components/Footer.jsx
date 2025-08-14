@@ -5,6 +5,7 @@ import { Box, Container, Typography, Link as MuiLink } from '@mui/material';
 
 export default function Footer() {
   return (
+    <div style={{ paddingTop: '100px' }}>
     <Box component="footer" sx={{ bgcolor: 'primary.main', color: '#fff', py: 4, mt: 8 }}>
       <Container
         maxWidth="lg"
@@ -30,5 +31,6 @@ export default function Footer() {
         </Box>
       </Container>
     </Box>
+    </div>
   );
 }
