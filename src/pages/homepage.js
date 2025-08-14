@@ -193,8 +193,8 @@ export default function Home() {
             alt={t.title}
             onClick={() => (window.location.href = `/trains/${t.type}`)}
             sx={{
-              width: '100%',
-              height: 220,                // force une hauteur uniforme
+              width: { xs: '100%', md: '21vw' }, 
+              height: 'auto',                // force une hauteur uniforme
               display: 'block',          // supprime l'espace baseline (gap gris)
               objectFit: 'cover',
               transition: 'transform .45s',
