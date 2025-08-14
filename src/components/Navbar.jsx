@@ -22,7 +22,7 @@ export default function Navbar() {
   const pages = [
     { label: 'Accueil', href: '/' },
     { label: 'Horaires', href: '/recherchehoraire' },
-    { label: 'Avantages', href: '/avantages-tarifs' },
+    { label: 'Avantages', href: '/avantagestarifaires' },
     { label: 'Services', href: '/services/en-gare' },
     { label: 'Trains', href: '/trains/banlieues' },
   ];
