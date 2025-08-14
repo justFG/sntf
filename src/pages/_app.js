@@ -1,19 +1,6 @@
 // pages/_app.js
 import Head from 'next/head';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
-const theme = createTheme({
-  palette: {
-    primary: { main: '#0ea5e9' }, // bleu-sky
-    secondary: { main: '#fb923c' }, // orange
-    background: { default: '#f8fafc' },
-  },
-  typography: {
-    fontFamily: ['"Roboto"', 'system-ui', 'Segoe UI', 'Helvetica', 'Arial'].join(','),
-  },
-});
-
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -23,10 +10,9 @@ export default function App({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Head>
-      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
-      </ThemeProvider>
+
     </>
   );
 }

@@ -110,37 +110,41 @@ export default function Home() {
         {/* Services */}
         <Box sx={{ bgcolor: '#f6f8fa', py: { xs: 4, md: 6 } }}>
           <Container maxWidth="lg">
-            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>SERVICES</Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <Card>
-                  <CardContent>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>EN GARE</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                      Accueil, information, billetterie, guichets et équipements en gare pour faciliter votre voyage.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button component={NextLink} href="/services/en-gare" size="small">Voir</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
+  <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>SERVICES</Typography>
 
-              <Grid item xs={12} md={6}>
-                <Card>
-                  <CardContent>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>À BORD DU TRAIN</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                      Information sur le confort, la sécurité, la restauration, le personnel à bord et les équipements.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button component={NextLink} href="/services/a-bord-du-train" size="small">Voir</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            </Grid>
-          </Container>
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: { xs: 'column', md: 'row' }, // mobile = colonne, desktop = ligne
+      gap: 3,
+    }}
+  >
+    <Card sx={{ flex: 1 }}>
+      <CardContent>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>EN GARE</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          Accueil, information, billetterie, guichets et équipements en gare pour faciliter votre voyage.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button component={NextLink} href="/services/en-gare" size="small">Voir</Button>
+      </CardActions>
+    </Card>
+
+    <Card sx={{ flex: 1 }}>
+      <CardContent>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>À BORD DU TRAIN</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          Information sur le confort, la sécurité, la restauration, le personnel à bord et les équipements.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button component={NextLink} href="/services/a-bord-du-train" size="small">Voir</Button>
+      </CardActions>
+    </Card>
+  </Box>
+</Container>
+
         </Box>
 
         {/* Discover trains — clickable whole card */}

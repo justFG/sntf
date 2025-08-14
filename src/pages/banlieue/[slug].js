@@ -5,13 +5,8 @@ import Head from 'next/head';
 import NextLink from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Container, Box, Typography, Button } from '@mui/material';
 
-const theme = createTheme({
-  palette: { primary: { main: '#003057' }, secondary: { main: '#D32F2F' } },
-  typography: { fontFamily: '"Roboto","Helvetica","Arial",sans-serif' },
-});
 
 const DATA = {
   'alger-est': {
@@ -53,7 +48,6 @@ export default function BanlieuePage() {
   // Avoid rendering final content until router is ready on client to match SSR
   if (!router.isReady) {
     return (
-      <ThemeProvider theme={theme}>
       <>
         <Head>
           <title>Banlieue — SNTF</title>
@@ -64,7 +58,6 @@ export default function BanlieuePage() {
         </Container>
         <Footer />
       </>
-      </ThemeProvider>
     );
   }
 
@@ -72,7 +65,6 @@ export default function BanlieuePage() {
 
   if (!info) {
     return (
-      <ThemeProvider theme={theme}>
       <>
         <Head>
           <title>Banlieue — SNTF</title>
@@ -87,12 +79,10 @@ export default function BanlieuePage() {
         </Container>
         <Footer />
       </>
-      </ThemeProvider>
     );
   }
 
   return (
-    <ThemeProvider theme={theme}>
     <>
       <Head>
         <title>{info.title} — SNTF</title>
@@ -140,6 +130,5 @@ export default function BanlieuePage() {
 
       <Footer />
     </>
-    </ThemeProvider>
   );
 }
