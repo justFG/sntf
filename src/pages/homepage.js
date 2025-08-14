@@ -11,6 +11,9 @@ import {
   Button,
   TextField,
   Card,
+  Dialog,
+  DialogContent,
+  IconButton,
   CardContent,
   CardActions,
   Link as MuiLink,
@@ -19,6 +22,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TrainIcon from '@mui/icons-material/Train';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const theme = createTheme({
   palette: { primary: { main: '#003057' }, secondary: { main: '#D32F2F' } },
@@ -45,6 +49,7 @@ export default function Home() {
   const [from, setFrom] = React.useState('');
   const [to, setTo] = React.useState('');
   const [date, setDate] = React.useState(new Date().toISOString().slice(0, 10));
+  const [zoomSrc, setZoomSrc] = React.useState(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -140,30 +145,114 @@ export default function Home() {
 
         {/* Discover trains — clickable whole card */}
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
-          <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>DÉCOUVREZ NOS TRAINS</Typography>
-          <Grid container spacing={3}>
-            {trains.map((t) => (
-              <Grid key={t.type} item xs={12} sm={6} md={3}>
-                {/* use MUI Link with component={NextLink} to avoid nested <a> */}
-                <MuiLink component={NextLink} href={`/trains/${t.type}`} underline="none" sx={{ display: 'block' }}>
-                  <Box sx={{
-                    position: 'relative', overflow: 'hidden', borderRadius: 2, display: 'block', cursor: 'pointer',
-                    '&:hover img': { transform: 'scale(1.08)' },
-                  }}>
-                    <Box component="img" src={t.img} alt={t.title} sx={{ width: { xs: '100%', md: '21vw' }, height: 'auto', objectFit: 'cover', transition: 'transform .4s' }} />
-                    <Box sx={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', p: 2, background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)', color: '#fff' }}>
-                      <Typography variant="h6">{t.title}</Typography>
-                      <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
-                        <Button component={NextLink} href={`/trains/${t.type}`} size="small" variant="contained" color="secondary">En savoir plus</Button>
-                        <Button size="small" variant="outlined" startIcon={<ZoomInIcon />} href={t.img} target="_blank" rel="noreferrer">Zoom</Button>
-                      </Box>
-                    </Box>
-                  </Box>
-                </MuiLink>
-              </Grid>
-            ))}
+      <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>DÉCOUVREZ NOS TRAINS</Typography>
+
+      <Grid container spacing={3}>
+        {trains.map((t) => (
+          <Grid key={t.type} item xs={12} sm={6} md={3}>
+            {/* Container carte cliquable */}
+            <Box
+              sx={{
+                position: 'relative',
+                overflow: 'hidden',
+                borderRadius: 2,
+                display: 'block',
+                cursor: 'pointer',
+                transition: 'box-shadow .25s',
+                '&:hover': { boxShadow: 6 },
+              }}
+            >
+              {/* Image responsive (100% mobile, largeur contrôlée desktop via vw pour garder la grille) */}
+              <Box
+                component="img"
+                src={t.img}
+                alt={t.title}
+                sx={{
+                  width: { xs: '100%', md: '21vw' },
+                  height: 'auto',
+                  objectFit: 'cover',
+                  transition: 'transform .45s',
+                  '&:hover': { transform: 'scale(1.06)' },
+                }}
+                onClick={() => window.location.href = `/trains/${t.type}`} // clique sur image = va sur page
+              />
+
+              {/* Overlay bas */}
+              <Box sx={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                p: 2,
+                background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)',
+                color: '#fff'
+              }}>
+                <Typography variant="h6" sx={{ lineHeight: 1 }}>{t.title}</Typography>
+
+                <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
+                  {/* En savoir plus : use Button component avec NextLink (pas de <a> imbriqué) */}
+                  <Button
+                    component={NextLink}
+                    href={`/trains/${t.type}`}
+                    size="small"
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<ArrowBackIosNewIcon sx={{ transform: 'rotate(180deg)' }} />}
+                    sx={{ textTransform: 'none' }}
+                  >
+                    En savoir plus
+                  </Button>
+
+                  {/* Zoom : ouvre modal avec l'image */}
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    startIcon={<ZoomInIcon />}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); setZoomSrc(t.img); }}
+                    sx={{ textTransform: 'none' }}
+                    aria-label={`Zoom ${t.title}`}
+                  >
+                    Zoom
+                  </Button>
+                </Box>
+              </Box>
+            </Box>
           </Grid>
-        </Container>
+        ))}
+      </Grid>
+
+      {/* Dialog zoom */}
+      <Dialog
+        open={!!zoomSrc}
+        onClose={() => setZoomSrc(null)}
+        fullWidth
+        maxWidth="lg"
+        aria-labelledby="zoom-dialog"
+      >
+        <DialogContent sx={{ position: 'relative', p: 0, bgcolor: '#000' }}>
+          <IconButton
+            onClick={() => setZoomSrc(null)}
+            sx={{ position: 'absolute', top: 8, right: 8, zIndex: 20, color: '#fff' }}
+            aria-label="Fermer"
+          >
+            ✕
+          </IconButton>
+
+          <Box
+            component="img"
+            src={zoomSrc || ''}
+            alt="Zoom train"
+            sx={{
+              width: '100%',
+              height: { xs: '60vh', md: '80vh' },
+              objectFit: 'contain',
+              background: '#000',
+            }}
+          />
+        </DialogContent>
+      </Dialog>
+    </Container>
       </Box>
 
       <Footer />
