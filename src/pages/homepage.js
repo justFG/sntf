@@ -59,7 +59,7 @@ export default function Home() {
 
       <Navbar />
 
-      <main>
+      <main style={{ paddingTop: '64px' }}>
         {/* HERO RECHERCHE */}
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
           <Container maxWidth="lg">

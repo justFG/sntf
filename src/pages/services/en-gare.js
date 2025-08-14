@@ -10,7 +10,7 @@ export default function EnGare() {
     <>
       <Head><title>Services — En gare</title></Head>
       <Navbar />
-      <Container sx={{ py: 6 }}>
+      <Container sx={{ py: 6 }} style={{ paddingTop: '200px' }}>
         <Typography variant="h4" sx={{ mb: 2 }}>EN GARE</Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
           Informations sur les services en gare : billetterie, guichets, accès PMR, salles de prière, buvettes, consignes, etc.
