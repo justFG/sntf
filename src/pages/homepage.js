@@ -35,10 +35,10 @@ const banlieues = [
 ];
 
 const trains = [
-  { type: 'banlieues', title: 'Trains de Banlieues', img: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=60' },
-  { type: 'regionaux', title: 'Trains Régionaux', img: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=60' },
-  { type: 'grandes-lignes', title: 'Trains de Grandes Lignes', img: 'https://images.unsplash.com/photo-1549921296-3a36a6b32737?auto=format&fit=crop&w=1200&q=60' },
-  { type: 'marchandises', title: 'Trains Marchandises', img: 'https://images.unsplash.com/photo-1501719539458-46f39fbcd8d2?auto=format&fit=crop&w=1200&q=60' },
+  { type: 'banlieues', title: 'Trains de Banlieues', img: '/trains/STADLER.jpg' },
+  { type: 'regionaux', title: 'Trains Régionaux', img: '/trains/CAF.jpg' },
+  { type: 'grandes-lignes', title: 'Trains de Grandes Lignes', img: '/trains/DS.jpg' },
+  { type: 'marchandises', title: 'Trains Marchandises', img: '/trains/DR.jpg' },
 ];
 
 export default function Home() {
@@ -150,7 +150,7 @@ export default function Home() {
                     position: 'relative', overflow: 'hidden', borderRadius: 2, display: 'block', cursor: 'pointer',
                     '&:hover img': { transform: 'scale(1.08)' },
                   }}>
-                    <Box component="img" src={t.img} alt={t.title} sx={{ width: '100%', height: 220, objectFit: 'cover', transition: 'transform .4s' }} />
+                    <Box component="img" src={t.img} alt={t.title} sx={{ width: { xs: '100%', md: '21vw' }, height: 'auto', objectFit: 'cover', transition: 'transform .4s' }} />
                     <Box sx={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', p: 2, background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)', color: '#fff' }}>
                       <Typography variant="h6">{t.title}</Typography>
                       <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
