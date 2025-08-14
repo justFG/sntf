@@ -20,6 +20,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TrainIcon from '@mui/icons-material/Train';
+import Footer from '../components/Footer';  
 
 // Simple header/footer placeholders — remplace par tes composants si tu en as
 function HeaderSimple() {
@@ -378,35 +379,10 @@ export default function AvantagesTarifsPage() {
               </Accordion>
             </Box>
           </Grid>
-
-          {/* Right column: quick actions / contact */}
-          <Grid item xs={12} md={4}>
-            <Box sx={{ position: 'sticky', top: 16 }}>
-              <Box sx={{ mb: 2, p: 2, borderRadius: 2, boxShadow: 1 }}>
-                <Typography variant="h6" sx={{ mb: 1 }}>Recherche d'horaires</Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Accédez rapidement aux horaires des trains.
-                </Typography>
-                <Link href="/recherchehoraire" passHref legacyBehavior>
-                  <Button component="a" variant="contained" fullWidth>Rechercher un horaire</Button>
-                </Link>
-              </Box>
-
-              <Box sx={{ p: 2, borderRadius: 2, boxShadow: 1 }}>
-                <Typography variant="h6" sx={{ mb: 1 }}>Contact gare</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Pour toute demande de carte ou abonnement, rendez-vous au guichet de votre gare ou contactez le service client.
-                </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Button variant="outlined" fullWidth href="#footer">Voir les contacts</Button>
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
         </Grid>
       </Container>
 
-      <FooterSimple />
+      <Footer />
     </>
   );
 }

@@ -46,7 +46,7 @@ export default function Footer() {
             <Box>
               <MuiLink
                 component={NextLink}
-                href="/avantages-tarifs"
+                href="/avantagestarifaires"
                 color="inherit"
                 sx={{ mr: 2 }}
               >
