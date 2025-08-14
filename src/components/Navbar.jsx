@@ -49,7 +49,7 @@ export default function Navbar() {
         >
           <Toolbar sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
-              <img src="/logo.png" alt="logo" style={{}}/>
+              <img src="/logo.png" alt="logo"/>
               <Button
                 component={NextLink}
                 href="/"

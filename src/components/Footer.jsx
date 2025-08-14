@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ paddingTop: '100px' }}>
+      <div style={{ paddingTop: '70px' }}>
         <Box
           component="footer"
           sx={{ bgcolor: 'primary.main', color: '#fff', py: 4, mt: 8 }}

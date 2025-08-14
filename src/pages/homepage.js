@@ -57,6 +57,7 @@ export default function Home() {
     // optionally use router.push instead of window.location.href
     window.location.href = `/recherchehoraire?${q}`;
   };
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -87,12 +88,12 @@ export default function Home() {
               </Grid>
 
               <Grid item xs={12} md={5} sx={{ textAlign: 'center' }}>
-                <TrainIcon sx={{ fontSize: 160, color: 'primary.main', opacity: 0.9 }} />
+                <Box component="img" src="/sntf.png" alt="Train" sx={{ width: 160, height: 160, opacity: 0.9, borderRadius: 5, display: { xs: 'none', sm: 'block' } }} />
               </Grid>
             </Grid>
           </Container>
         </Box>
-
+<br/><br/><br/>
         {/* Banlieue buttons */}
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>HORAIRES DES TRAINS DE BANLIEUE</Typography>
@@ -111,7 +112,7 @@ export default function Home() {
         <Box sx={{ bgcolor: '#f6f8fa', py: { xs: 4, md: 6 } }}>
           <Container maxWidth="lg">
   <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>SERVICES</Typography>
-
+<br/>
   <Box
     sx={{
       display: 'flex',
@@ -144,13 +145,13 @@ export default function Home() {
     </Card>
   </Box>
 </Container>
-
+<br/><br/>
         </Box>
 
         {/* Discover trains — clickable whole card */}
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
   <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>DÉCOUVREZ NOS TRAINS</Typography>
-
+<br/><br/>
   <Grid container spacing={3}>
     {trains.map((t) => (
       <Grid key={t.type} item xs={12} sm={6} md={3}>
