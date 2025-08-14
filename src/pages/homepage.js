@@ -145,114 +145,158 @@ export default function Home() {
 
         {/* Discover trains — clickable whole card */}
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>DÉCOUVREZ NOS TRAINS</Typography>
+  <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>DÉCOUVREZ NOS TRAINS</Typography>
 
-      <Grid container spacing={3}>
-        {trains.map((t) => (
-          <Grid key={t.type} item xs={12} sm={6} md={3}>
-            {/* Container carte cliquable */}
-            <Box
-              sx={{
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: 2,
-                display: 'block',
-                cursor: 'pointer',
-                transition: 'box-shadow .25s',
-                '&:hover': { boxShadow: 6 },
-              }}
-            >
-              {/* Image responsive (100% mobile, largeur contrôlée desktop via vw pour garder la grille) */}
-              <Box
-                component="img"
-                src={t.img}
-                alt={t.title}
-                sx={{
-                  width: { xs: '100%', md: '21vw' },
-                  height: 'auto',
-                  objectFit: 'cover',
-                  transition: 'transform .45s',
-                  '&:hover': { transform: 'scale(1.06)' },
-                }}
-                onClick={() => window.location.href = `/trains/${t.type}`} // clique sur image = va sur page
-              />
-
-              {/* Overlay bas */}
-              <Box sx={{
-                position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-                p: 2,
-                background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)',
-                color: '#fff'
-              }}>
-                <Typography variant="h6" sx={{ lineHeight: 1 }}>{t.title}</Typography>
-
-                <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
-                  {/* En savoir plus : use Button component avec NextLink (pas de <a> imbriqué) */}
-                  <Button
-                    component={NextLink}
-                    href={`/trains/${t.type}`}
-                    size="small"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<ArrowBackIosNewIcon sx={{ transform: 'rotate(180deg)' }} />}
-                    sx={{ textTransform: 'none' }}
-                  >
-                    En savoir plus
-                  </Button>
-
-                  {/* Zoom : ouvre modal avec l'image */}
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    startIcon={<ZoomInIcon />}
-                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); setZoomSrc(t.img); }}
-                    sx={{ textTransform: 'none' }}
-                    aria-label={`Zoom ${t.title}`}
-                  >
-                    Zoom
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
-
-      {/* Dialog zoom */}
-      <Dialog
-        open={!!zoomSrc}
-        onClose={() => setZoomSrc(null)}
-        fullWidth
-        maxWidth="lg"
-        aria-labelledby="zoom-dialog"
-      >
-        <DialogContent sx={{ position: 'relative', p: 0, bgcolor: '#000' }}>
-          <IconButton
-            onClick={() => setZoomSrc(null)}
-            sx={{ position: 'absolute', top: 8, right: 8, zIndex: 20, color: '#fff' }}
-            aria-label="Fermer"
-          >
-            ✕
-          </IconButton>
-
+  <Grid container spacing={3}>
+    {trains.map((t) => (
+      <Grid key={t.type} item xs={12} sm={6} md={3}>
+        <Box
+          sx={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: 2,
+            display: 'block',
+            cursor: 'pointer',
+            transition: 'box-shadow .25s',
+            '&:hover': { boxShadow: 6 },
+            // actions (boutons) cachés par défaut, visibles au hover
+            '& .actions': {
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1,
+              opacity: 0,
+              transform: 'translateY(8px)',
+              transition: 'opacity .28s, transform .28s',
+              pointerEvents: 'none',
+            },
+            '&:hover .actions': {
+              opacity: 1,
+              transform: 'translateY(0)',
+              pointerEvents: 'auto',
+            },
+          }}
+        >
+          {/* image stable : display:block + hauteur fixe pour éviter "gris" sous l'image */}
           <Box
             component="img"
-            src={zoomSrc || ''}
-            alt="Zoom train"
+            src={t.img}
+            alt={t.title}
+            onClick={() => (window.location.href = `/trains/${t.type}`)}
             sx={{
               width: '100%',
-              height: { xs: '60vh', md: '80vh' },
-              objectFit: 'contain',
-              background: '#000',
+              height: 220,                // force une hauteur uniforme
+              display: 'block',          // supprime l'espace baseline (gap gris)
+              objectFit: 'cover',
+              transition: 'transform .45s',
+              '&:hover': { transform: 'scale(1.06)' },
             }}
           />
-        </DialogContent>
-      </Dialog>
-    </Container>
+
+          {/* overlay gradient bas (titre + petites infos) */}
+          <Box sx={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            p: 2,
+            background: 'linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 100%)',
+            color: '#fff',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+          }}>
+            <Typography variant="h6" sx={{ lineHeight: 1 }}>{t.title}</Typography>
+          </Box>
+
+          {/* actions centrées (apparition au hover) */}
+          <Box className="actions" aria-hidden={false}>
+            <Button
+              component={NextLink}
+              href={`/trains/${t.type}`}
+              size="small"
+              variant="contained"
+              color="secondary"
+              sx={{
+                textTransform: 'none',
+                bgcolor: 'rgba(255,255,255,0.12)',
+                color: '#fff',
+                border: '1px solid rgba(255,255,255,0.6)',
+                borderRadius: '999px',
+                backdropFilter: 'blur(4px)',
+                px: 2,
+                py: 0.5,
+                '&:hover': {
+                  bgcolor: 'rgba(255,255,255,0.18)',
+                  boxShadow: 'none'
+                }
+              }}
+            >
+              En savoir plus
+            </Button>
+
+            <Button
+              size="small"
+              variant="outlined"
+              startIcon={<ZoomInIcon />}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setZoomSrc(t.img); }}
+              sx={{
+                textTransform: 'none',
+                bgcolor: 'rgba(255,255,255,0.12)',
+                color: '#fff',
+                border: '1px solid rgba(255,255,255,0.6)',
+                borderRadius: '999px',
+                px: 2,
+                py: 0.5,
+                '&:hover': {
+                  bgcolor: 'rgba(255,255,255,0.18)'
+                }
+              }}
+            >
+              Zoom
+            </Button>
+          </Box>
+        </Box>
+      </Grid>
+    ))}
+  </Grid>
+
+  {/* Dialog zoom (comme avant) */}
+  <Dialog
+    open={!!zoomSrc}
+    onClose={() => setZoomSrc(null)}
+    fullWidth
+    maxWidth="lg"
+    aria-labelledby="zoom-dialog"
+  >
+    <DialogContent sx={{ position: 'relative', p: 0, bgcolor: '#000' }}>
+      <IconButton
+        onClick={() => setZoomSrc(null)}
+        sx={{ position: 'absolute', top: 8, right: 8, zIndex: 20, color: '#fff' }}
+        aria-label="Fermer"
+      >
+        ✕
+      </IconButton>
+
+      <Box
+        component="img"
+        src={zoomSrc || ''}
+        alt="Zoom train"
+        sx={{
+          width: '100%',
+          height: { xs: '60vh', md: '80vh' },
+          objectFit: 'contain',
+          background: '#000',
+        }}
+      />
+    </DialogContent>
+  </Dialog>
+</Container>
       </Box>
 
       <Footer />
