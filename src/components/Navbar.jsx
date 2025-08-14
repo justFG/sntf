@@ -49,14 +49,14 @@ export default function Navbar() {
         >
           <Toolbar sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
-              <TrainIcon sx={{ mr: 1 }} />
+              <img src="/logo.png" alt="logo" style={{}}/>
               <Button
                 component={NextLink}
                 href="/"
                 color="inherit"
                 sx={{ textTransform: 'none', fontWeight: 700 }}
               >
-                SNTF
+                S. N. T. F
               </Button>
             </Box>
 
