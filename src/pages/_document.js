@@ -8,11 +8,31 @@ class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta name="description" content="S.N.T.F" />
-          <link rel="icon" href="/logo.svg" />
-          <meta name="format-detection" content="telephone=no"/>
+          <link rel="icon" href="/logo.png" />
+          <meta name="format-detection" content="telephone=no" />
+
+          {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+          {/* Font Awesome */}
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          />
+
+          {/* Open Graph / Facebook */}
+          <meta property="og:title" content="S.N.T.F" />
+          <meta property="og:description" content="Site non-officiel de la S.N.T.F" />
+          <meta property="og:image" content="/sntf.png" /> {/* image de ta bannière */}
+          <meta property="og:url" content="https://sntf.vercel.app" />
+          <meta property="og:type" content="website" />
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="S.N.T.F" />
+          <meta name="twitter:description" content="Site nn-officiel de la S.N.T.F" />
+          <meta name="twitter:image" content="/sntf.png" /> {/* même image que OG */}
         </Head>
         <body>
           <Main />
