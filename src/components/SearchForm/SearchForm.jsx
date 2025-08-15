@@ -106,7 +106,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
             }}
             onInputChange={(e, v) => setFromInput(v)}
             size="small"
-            sx={{ minWidth: 160 }}
+            sx={{ maxWidth: '40vw',minWidth: { xs: '40vw', md: '30vw' } }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -142,7 +142,7 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
             }}
             onInputChange={(e, v) => setToInput(v)}
             size="small"
-            sx={{ minWidth: 160 }}
+            sx={{ maxWidth: '40vw',minWidth: { xs: '40vw', md: '30vw' } }}
             renderInput={(params) => (
               <TextField
                 {...params}
