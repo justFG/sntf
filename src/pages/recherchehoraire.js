@@ -3,6 +3,8 @@ import { Container, Typography, Paper } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
 import SearchForm from '../components/SearchForm/SearchForm';
 import ResultsList from '../components/ResultsList/ResultsList';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 export default function Home() {
   const [stations, setStations] = useState([]);
@@ -53,7 +55,7 @@ export default function Home() {
         <title>SNTF — Recherche Horaires</title>
         <meta name="description" content="Recherche des horaires de train SNTF" />
       </Head>
-
+      <Navbar/>
       <Container maxWidth="md" sx={{ py: 6 }}>
         <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
           <Typography variant="h5" component="h1">
@@ -78,6 +80,7 @@ export default function Home() {
           © {new Date().getFullYear()} SNTF — Service National des Transports Ferroviaires
         </Typography>
       </Container>
+      <Footer/>
     </>
   );
 }
