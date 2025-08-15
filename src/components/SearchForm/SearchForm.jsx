@@ -16,10 +16,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import styles from './SearchForm.module.css';
 
 export default function SearchForm({ stationNames = [], onSearch, loading, setError, setResults }) {
-  const [from, setFrom] = useState('Alger');
-  const [to, setTo] = useState('Oran');
-  const [fromInput, setFromInput] = useState('Alger');
-  const [toInput, setToInput] = useState('Oran');
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [fromInput, setFromInput] = useState('');
+  const [toInput, setToInput] = useState('');
   const [date, setDate] = useState('');
 
   useEffect(() => {
@@ -105,19 +105,15 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
               }
             }}
             onInputChange={(e, v) => setFromInput(v)}
+            size="small"
+            sx={{ minWidth: 170 }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Départ"
+                required
                 variant="outlined"
-                size="medium"
                 onKeyDown={handleFromKeyDown}
-                sx={{ width: { xs: '39vw', md: '20vw' }}}
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary' }} />,
-                }}
-                fullWidth
               />
             )}
           />
@@ -131,8 +127,8 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
 
         <Grid item xs={12} md={5}>
           <Autocomplete
-            freeSolo
             options={stationNames}
+            freeSolo
             value={to}
             inputValue={toInput}
             onChange={(e, v) => {
@@ -145,19 +141,15 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
               }
             }}
             onInputChange={(e, v) => setToInput(v)}
+            size="small"
+            sx={{ minWidth: 170 }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Arrivée"
+                required
                 variant="outlined"
-                size="medium"
                 onKeyDown={handleToKeyDown}
-                sx={{ width: { xs: '39vw', md: '20vw' }}}
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: <PlaceIcon sx={{ mr: 1, color: 'text.secondary', transform: 'rotate(180deg)' }} />,
-                }}
-                fullWidth
               />
             )}
           />
@@ -167,16 +159,15 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
        <div className={styles.date}>
         <Grid item xs={12} md={4}>
           <TextField
-            label="Date"
-            type="date"
-            size="medium"
-            value={date}
-            sx={{width: { xs: '49vw', md: '20vw' }}}
-            onChange={(e) => setDate(e.target.value)}
-            InputLabelProps={{ shrink: true }}
-            InputProps={{ startAdornment: <CalendarTodayIcon sx={{ mr: 1, color: 'text.secondary' }} /> }}
-            fullWidth
-          />
+              label="Date"
+              type="date"
+              size="small"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+              sx={{ minWidth: 160 }}
+              InputLabelProps={{ shrink: true }}
+            />
         </Grid>
        </div>
 
