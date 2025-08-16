@@ -8,9 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Container, Box, Grid, Typography, Button, TextField, Autocomplete, Card, Dialog, DialogContent, IconButton, CardContent, CardActions, Link as MuiLink } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import TrainIcon from '@mui/icons-material/Train';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const theme = createTheme({
   palette: { primary: { main: '#003057' }, secondary: { main: '#D32F2F' } },

@@ -53,7 +53,7 @@ export default function Footer() {
                 Avantages & Tarifs
               </MuiLink>
 
-              <MuiLink component={NextLink} href="/contact" color="inherit">
+              <MuiLink component={NextLink} href="/contacts" color="inherit">
                 Contact
               </MuiLink>
             </Box>

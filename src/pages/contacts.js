@@ -1,7 +1,6 @@
 // src/pages/contact.js
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import {
   Container,
   Box,
@@ -15,53 +14,11 @@ import {
   ListItemText,
   IconButton,
 } from '@mui/material';
-import TrainIcon from '@mui/icons-material/Train';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PrintIcon from '@mui/icons-material/Print';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-
-/* ---------- Header / Footer simples (remplace par tes composants si besoin) ---------- */
-function HeaderSimple() {
-  return (
-    <Box component="header" sx={{ bgcolor: '#003057', color: '#fff', py: 2 }}>
-      <Container sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <TrainIcon sx={{ fontSize: 34 }} />
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          SNTF
-        </Typography>
-        <Box sx={{ ml: 3, display: 'flex', gap: 1 }}>
-          <Link href="/" passHref legacyBehavior>
-            <Button component="a" sx={{ color: '#fff' }}>Accueil</Button>
-          </Link>
-          <Link href="/recherchehoraire" passHref legacyBehavior>
-            <Button component="a" sx={{ color: '#fff' }}>Horaires</Button>
-          </Link>
-          <Link href="/avantages-tarifs" passHref legacyBehavior>
-            <Button component="a" sx={{ color: '#fff' }}>Avantages & Tarifs</Button>
-          </Link>
-        </Box>
-      </Container>
-    </Box>
-  );
-}
-
-function FooterSimple() {
-  return (
-    <Box component="footer" sx={{ bgcolor: '#003057', color: '#fff', py: 4, mt: 6 }}>
-      <Container sx={{ textAlign: 'center' }}>
-        <Typography variant="body2">&copy; {new Date().getFullYear()} SNTF — Tous droits réservés.</Typography>
-        <Box sx={{ mt: 1 }}>
-          <Link href="#" passHref legacyBehavior>
-            <Button component="a" sx={{ color: '#fff' }}>Mentions légales</Button>
-          </Link>
-          <Link href="#" passHref legacyBehavior>
-            <Button component="a" sx={{ color: '#fff' }}>Politique de confidentialité</Button>
-          </Link>
-        </Box>
-      </Container>
-    </Box>
-  );
-}
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 /* ---------- Données (extraites de ton texte) ---------- */
 const headquarters = {
@@ -180,7 +137,7 @@ export default function ContactPage() {
         <meta name="description" content="Contacts et directions — SNTF" />
       </Head>
 
-      <HeaderSimple />
+      <Navbar/>
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         <Grid container spacing={4}>
@@ -293,46 +250,10 @@ export default function ContactPage() {
               </Box>
             </Paper>
           </Grid>
-
-          {/* Right: quick actions / contact box */}
-          <Grid item xs={12} md={4}>
-            <Box sx={{ position: 'sticky', top: 16 }}>
-              <Paper sx={{ p: 2, mb: 2 }}>
-                <Typography variant="h6" sx={{ mb: 1 }}>Contact rapide</Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Pour toute information, rendez-vous au siège ou appelez le standard.
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
-                  <PhoneIcon sx={{ mt: 0.5 }} />
-                  <Tel number={headquarters.tel} />
-                </Box>
-                <Typography variant="body2">Fax: {headquarters.fax}</Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Link href="/recherchehoraire" passHref legacyBehavior>
-                    <Button component="a" variant="contained" fullWidth>
-                      Rechercher un horaire
-                    </Button>
-                  </Link>
-                </Box>
-              </Paper>
-
-              <Paper sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 1 }}>Guichets & démarches</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Pour l'obtention de cartes (carte jeune, famille nombreuse, 3ème âge), adressez-vous au guichet de votre gare. Voir les informations détaillées sur la page Avantages & Tarifs.
-                </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Link href="/avantages-tarifs" passHref legacyBehavior>
-                    <Button component="a" variant="outlined" fullWidth>Avantages & Tarifs</Button>
-                  </Link>
-                </Box>
-              </Paper>
-            </Box>
-          </Grid>
         </Grid>
       </Container>
 
-      <FooterSimple />
+      <Footer />
     </>
   );
 }

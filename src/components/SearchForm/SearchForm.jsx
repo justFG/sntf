@@ -10,8 +10,6 @@ import {
 } from '@mui/material';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import PlaceIcon from '@mui/icons-material/Place';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from './SearchForm.module.css';
 
@@ -25,18 +23,6 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
   useEffect(() => {
     setDate(new Date().toISOString().split('T')[0]);
   }, []);
-
-  useEffect(() => {
-    // if stationNames contain our defaults, keep them; useful when stations.json not loaded yet
-    if (stationNames.includes('Alger')) {
-      setFrom('Alger');
-      setFromInput('Alger');
-    }
-    if (stationNames.includes('Oran')) {
-      setTo('Oran');
-      setToInput('Oran');
-    }
-  }, [stationNames]);
 
   const swapStations = () => {
     setFrom((prev) => {
@@ -76,13 +62,6 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
     onSearch && onSearch(finalFrom, finalTo, finalDate);
   };
 
-  const resetFilters = () => {
-    setFrom('Alger');
-    setTo('Oran');
-    setFromInput('Alger');
-    setToInput('Oran');
-    setDate(new Date().toISOString().split('T')[0]);
-  };
 
   return (
     <div className={styles.wrapper}>
@@ -183,12 +162,6 @@ export default function SearchForm({ stationNames = [], onSearch, loading, setEr
                 disabled={loading}
               >
                 Rechercher
-              </Button>
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <Button variant="outlined" startIcon={<CloseIcon />} onClick={resetFilters} fullWidth>
-                Réinitialiser
               </Button>
             </Grid>
           </Grid>

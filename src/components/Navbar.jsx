@@ -14,7 +14,6 @@ import {
   createTheme
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import TrainIcon from '@mui/icons-material/Train';
 
 export default function Navbar() {
   const [anchor, setAnchor] = React.useState(null);
@@ -23,7 +22,7 @@ export default function Navbar() {
     { label: 'Accueil', href: '/' },
     { label: 'Horaires', href: '/recherchehoraire' },
     { label: 'Avantages', href: '/avantagestarifaires' },
-    { label: 'Services', href: '/services/en-gare' },
+    { label: 'Services', href: '/services/a-bord-du-train' },
     { label: 'Trains', href: '/trains/banlieues' },
   ];
 

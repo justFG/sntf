@@ -19,40 +19,8 @@ import {
   ListItemText,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TrainIcon from '@mui/icons-material/Train';
+import Navbar from '../components/Navbar';  
 import Footer from '../components/Footer';  
-
-// Simple header/footer placeholders — remplace par tes composants si tu en as
-function HeaderSimple() {
-  return (
-    <Box component="header" sx={{ bgcolor: '#003057', color: '#fff', py: 2 }}>
-      <Container sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <TrainIcon sx={{ fontSize: 34 }} />
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          SNTF
-        </Typography>
-        <Box sx={{ ml: 3 }}>
-          <Link href="/" passHref legacyBehavior><Button component="a" sx={{ color: '#fff' }}>Accueil</Button></Link>
-          <Link href="/recherchehoraire" passHref legacyBehavior><Button component="a" sx={{ color: '#fff' }}>Horaires</Button></Link>
-        </Box>
-      </Container>
-    </Box>
-  );
-}
-
-function FooterSimple() {
-  return (
-    <Box component="footer" sx={{ bgcolor: '#003057', color: '#fff', py: 4, mt: 6 }}>
-      <Container sx={{ textAlign: 'center' }}>
-        <Typography variant="body2">&copy; {new Date().getFullYear()} SNTF — Tous droits réservés.</Typography>
-        <Box sx={{ mt: 1 }}>
-          <Link href="#" passHref legacyBehavior><Button component="a" sx={{ color: '#fff' }}>Mentions légales</Button></Link>
-          <Link href="#" passHref legacyBehavior><Button component="a" sx={{ color: '#fff' }}>Contact</Button></Link>
-        </Box>
-      </Container>
-    </Box>
-  );
-}
 
 export default function AvantagesTarifsPage() {
   return (
@@ -62,7 +30,7 @@ export default function AvantagesTarifsPage() {
         <meta name="description" content="Informations sur les tarifs, cartes et abonnements SNTF" />
       </Head>
 
-      <HeaderSimple />
+      <Navbar/>
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         {/* Breadcrumbs + title */}
